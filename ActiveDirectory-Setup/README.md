@@ -1,75 +1,102 @@
-Step-by-Step Lab Guide
-1. Environment Preparation
+# Step-by-Step Lab Guide: Active Directory Setup in VMware
 
-    Install VMware Workstation Player.
+## Environment Preparation
 
-        Refer to: install_vmware_LI.jpg
+1. **Install VMware Workstation Player**  
+   ![Install VMware](Screenshots/install_vmware_LI.jpg)
 
-    Download Windows Server 2019 Evaluation ISO.
+2. **Download Windows Server 2019 Evaluation ISO**  
+   ![Download ISO](Screenshots/download_isofile.jpg)
 
-        Refer to: download_isofile.jpg
+---
 
-2. VM Creation
+## VM Creation
 
-    Create VM #1 for Windows Server 2019.
+1. **Create VM #1 for Windows Server 2019**  
+2. **Create VM #2 for the client system**  
+3. Use "Installer disc image file (iso)" for the installation  
+   ![Installer ISO](Screenshots/Screenshot-87.jpg)
 
-    Create VM #2 for the client system.
+---
 
-    Use "Installer disc image file (iso)" for the installation ([Screenshot-87.jpg]).
+## Server Configuration
 
-3. Server Configuration
+1. **Install AD DS (Active Directory Domain Services) role**  
+   ![Install AD DS](Screenshots/Screenshot-97.jpg)
 
-    Install AD DS (Active Directory Domain Services) role ([Screenshot-97.jpg]).
+2. **Promote the server to a Domain Controller**  
+   Example: `nothingtofear.local`  
 
-    Promote the server to a Domain Controller, e.g., nothingtofear.local.
+3. **Configure Server Manager and AD DS**  
+   ![Server Manager 1](Screenshots/Screenshot-88.jpg)  
+   ![Server Manager 2](Screenshots/Screenshot-90.jpg)  
+   ![Server Manager 3](Screenshots/Screenshot-96.jpg)  
+   ![Server Manager 4](Screenshots/Screenshot-95.jpg)
 
-    Configure Server Manager and AD DS ([Screenshot-88.jpg], [Screenshot-90.jpg], [Screenshot-96.jpg], [Screenshot-95.jpg]).
+---
 
-4. User Creation
+## User Creation
 
-    In Active Directory Users and Computers, create a user (helpdesk ntf) ([Screenshot-93.jpg], [Screenshot-94.jpg]).
+1. Open **Active Directory Users and Computers**  
+2. Create a user: `helpdesk ntf`  
+   ![User Creation 1](Screenshots/Screenshot-93.jpg)  
+   ![User Creation 2](Screenshots/Screenshot-94.jpg)
 
-5. Joining Client VM to Domain
+---
 
-    On the client VM, open System Properties and attempt to join the domain (e.g., nothingtofear.local). ([Screenshot-91.jpg], [Screenshot-99.jpg])
+## Joining Client VM to Domain
 
-    Problem: Direct entry of domain fails due to network/DNS issues ([Screenshot-99.jpg]).
+1. On the client VM, open **System Properties** and attempt to join the domain (`nothingtofear.local`)  
+   ![Domain Join Attempt](Screenshots/Screenshot-91.jpg)  
+   ![Domain Join Problem](Screenshots/Screenshot-99.jpg)
 
-Troubleshooting Step:
+**Problem:** Direct entry of domain fails due to network/DNS issues.
 
-    Check the network adapter properties ([Screenshot-89.jpg]).
+**Troubleshooting Steps:**
 
-    Set the DNS server manually to point to the Domain Controller’s IP ([Screenshot-98.jpg], [Screenshot-92.jpg]).
+1. Check the network adapter properties  
+   ![Network Adapter](Screenshots/Screenshot-89.jpg)
 
-    After correct DNS configuration, retry domain join ([Screenshot-91.jpg]). Now "helpdesk ntf" can log in successfully ([Screenshot-92.jpg]).
+2. Set the DNS server manually to the Domain Controller’s IP  
+   ![DNS Setup 1](Screenshots/Screenshot-98.jpg)  
+   ![DNS Setup 2](Screenshots/Screenshot-92.jpg)
 
-6. Final Verification
+3. Retry domain join  
+   ![Domain Join Success](Screenshots/Screenshot-91.jpg)  
+   Now the user `helpdesk ntf` can log in successfully  
+   ![User Login](Screenshots/Screenshot-92.jpg)
 
-    Log in to client VM as the AD user helpdesk ntf ([Screenshot-92.jpg]).
+---
 
-    Computer shows as domain-joined in AD ([Screenshot-91.jpg]).
+## Final Verification
 
-Problem Faced and Solution
+1. Log in to client VM as the AD user `helpdesk ntf`  
+   ![Login Verification](Screenshots/Screenshot-92.jpg)
 
-Issue:
-Directly entering the domain name during client join fails with an "AD DC could not be contacted" error.
+2. Computer shows as domain-joined in AD  
+   ![AD Verification](Screenshots/Screenshot-91.jpg)
 
-Solution:
-Manually set the preferred DNS server on the client VM's Ethernet adapter to the Domain Controller’s static IP address. This allows the client to resolve and contact the domain controller during the join process.
-Screenshots
+---
 
-All referenced screenshots are included in the Screenshots folder. Each image illustrates a key configuration step or troubleshooting action.
-Key Learning Outcomes
+## Problem Faced and Solution
 
-    AD setup and domain controller installation in a VM.
+**Issue:** Directly entering the domain name during client join fails with "AD DC could not be contacted".  
 
-    Network configuration and DNS troubleshooting for domain joining.
+**Solution:**  
+Manually set the preferred DNS server on the client VM’s Ethernet adapter to the Domain Controller’s static IP. This allows the client to resolve and contact the domain controller.
 
-    Manual user creation and successful domain logon from the client.
+---
 
-    Understanding network dependencies for AD environments.
+## Key Learning Outcomes
 
-Credits
+- AD setup and domain controller installation in a VM  
+- Network configuration and DNS troubleshooting for domain joining  
+- Manual user creation and successful domain logon from the client  
+- Understanding network dependencies for AD environments
 
-Project by Rajnish kumar.
-Lab practiced and documented for learning Active Directory, Windows Server, VMware Workstation, and troubleshooting domain setups.
+---
+
+## Credits
+
+Project by **Rajnish Kumar**. Lab practiced and documented for learning **Active Directory, Windows Server, VMware Workstation**, and troubleshooting domain setups.
+
