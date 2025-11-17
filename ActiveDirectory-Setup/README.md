@@ -15,18 +15,18 @@
 1. **Create VM #1 for Windows Server 2019**  
 2. **Create VM #2 for the client system**  
 3. Use "Installer disc image file (iso)" for the installation  
-   ![Installer ISO](screenshots/Screenshot (87).png)
+   ![Installer ISO](screenshots/Screenshot-87.png)
 
 ---
 
 ## Server Configuration
 
 1. **Install AD DS (Active Directory Domain Services) role**  
-   ![Install AD DS](screenshots/Screenshot (88).png)
+   ![Install AD DS](screenshots/Screenshot-88.png)
 
 
 2. **Configure Server Manager and AD DS**  
-   ![Server Manager 1](screenshots/Screenshot (89).png)  
+   ![Server Manager 1](screenshots/Screenshot-89.png)  
 3. **Promote the server to a Domain Controller**
    Example: `nothingtofear.local` to check use command whoami /fqdn
 ---
@@ -35,29 +35,29 @@
 
 1. Open **Active Directory Users and Computers**  
 2. Create a user: `helpdesk ntf`  
-   ![User Creation 1](screenshots/Screenshot (90).png)
+   ![User Creation 1](screenshots/Screenshot-90.png)
 
 ---
 
 ## Joining Client VM helpdesk to Domain
 
 1. On the client VM, open **System Properties** and attempt to join the domain (`nothingtofear.local`)  
-   ![Domain Join Attempt](screenshots/Screenshot (95).png)  
-   ![Domain Join Problem](screenshots/Screenshot (96).png)
+   ![Domain Join Attempt](screenshots/Screenshot-95.png)  
+   ![Domain Join Problem](screenshots/Screenshot-96.png)
 
 **Problem:** Direct entry of domain fails due to network/DNS issues.
 
 **Troubleshooting Steps:**
 
 1. Check the network adapter properties  
-   ![Network Adapter](screenshots/Screenshot (97).png)
+   ![Network Adapter](screenshots/Screenshot-97.png)
 
 2. Set the DNS server manually to the Domain Controller’s IP  
-   ![DNS Setup 1](screenshots/Screenshot (91).png)
-   ![DNS Setup 2](screenshots/Screenshot (98).png)
+   ![DNS Setup 1](screenshots/Screenshot-91.png)
+   ![DNS Setup 2](screenshots/Screenshot-98.png)
 
 3. Retry domain join  
-   ![Domain Join Success](screenshots/Screenshot (94).png)  
+   ![Domain Join Success](screenshots/Screenshot-94.png)  
    
    Now the user `helpdesk ntf` can log in successfully  
 
@@ -66,10 +66,10 @@
 ## Final Verification
 
 1. Log in to client VM as the AD user `helpdesk ntf`  
-   ![Login Verification](screenshots/Screenshot (92).png)
+   ![Login Verification](screenshots/Screenshot-92.png)
 
 2. Computer shows as domain-joined in AD  
-   ![AD Verification](screenshots/Screenshot (99).png)
+   ![AD Verification](screenshots/Screenshot-99.png)
 
 ---
 
